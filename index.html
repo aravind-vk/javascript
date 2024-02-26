@@ -3,10 +3,11 @@
 <link rel="stylesheet" href="./lib/treeselectjs.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link href="https://www.cssscript.com/demo/sticky.css" rel="stylesheet" type="text/css">
+  <script src="./js/load-tree.js"></script>
 </head>
 
 <body>
-  <div class="family_tree" >
+  <div id='family_tree' class="family_tree" >
 </div>
 
 
@@ -17,13 +18,19 @@
   <button id="result-Btn" onclick="loadAnotherDefaultValues()"
   style="margin: 10px 10px; padding: 5px;"
 >Load Another Set</button>
-</body>
 
-<script type="module"
-  src="./js/tree.js"
->
+<script type="module">
+  import Treeselect from './lib/treeselect-js.js';
+  window.Treeselect = Treeselect;
+</script>
+<script>
+  $( document ).ready(function() {
+    loadTree([1,2,3]);
+  });
 
 </script>
+</body>
+
 <script >
   function callBtnVals(){
     let childOfArr = [];
@@ -44,14 +51,7 @@
   }
 
   function loadAnotherDefaultValues(){
-    custom_default_family_api_array =
-            [
-            {"family":"GSuite","family_value":"gsuite","apiId":4,"api":"gsuite_api1","isDefault":"Y"},
-            {"family":"Maps","family_value":"maps","apiId":7,"api":"maps_api2","isDefault":"Y"},
-            {"family":"Maps","family_value":"maps","apiId":8,"api":"maps_api3","isDefault":"Y"},
-            {"family":"Others","family_value":"others","apiId":9,"api":"other_api1","isDefault":"Y"}
-            ];   // Load this array into the text box when click on "Load Another Set" button 
-    alert("Load Another Default Parent - Child Arrays");
+    loadTree([1,5]);
   }
 </script>
 </html>
